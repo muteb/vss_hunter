@@ -29,10 +29,11 @@ def searc_by_folder(path,root_dir):
 
 
 def main(argv=[]):
-    parser = argparse.ArgumentParser(description="Explore VOlume Shadow Copies")
+    parser = argparse.ArgumentParser(description="Explore Volume Shadow Copies")
     parser.add_argument("-p", "--Path", type=str, help="Type path")
     parser.add_argument("-s", "--Hash", type=str, help="Type Hash")
     parser.add_argument("-f", "--FileName", type=str, help="Type File Name")
+    parser.add_argument("-c", "--CopyFile", type=str, help="Type File Name")
 
     args = parser.parse_args()
     cs_vss = vss_cls.vss()

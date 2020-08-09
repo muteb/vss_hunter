@@ -33,4 +33,5 @@ class vss:
                 DeviceObject = str(objItem.DeviceObject)
                 dict2['ID'] = DeviceObject
             devcID.append(dict2)
+        print (devcID)
         return devcID
