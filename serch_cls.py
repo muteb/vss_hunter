@@ -21,8 +21,7 @@ class search:
     
     def hash_file(self, file_name,method):
         try:
-            # The size of each read from the file
-            BLOCK_SIZE = 131072  #128 bytes
+        
             # Create the hash object, can use something other than `.sha256()` if you wish
             file_hash = method
             # Open the file to read it's bytes
@@ -31,12 +30,6 @@ class search:
                 fb = f.read()
                 # While there is still data being read from the file
                 file_hash.update(fb)
-                # while len(fb) > 0:
-                    # Update the hash 
-                # file_hash.update(fb)
-                # Read the next block from the file 
-                # fb = f.read(BLOCK_SIZE)
-            # print(file_hash.hexdigest())
             return file_hash.hexdigest()
         except:
             pass
