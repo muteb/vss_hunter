@@ -37,7 +37,7 @@ class search:
     def find_hash(self,hash,search_path):
         # list all hashes method and their sizes
         length_hashes = [{'size':32,'method':hashlib.md5()},{'size':40,'method':hashlib.sha1()},{'size':64,'method':hashlib.sha256()}]
-        #itrate through the the size and update the method
+        #itrate through the size and update the method
         for arr in length_hashes:
             if arr['size'] == len(hash):
                 print(str(arr['size']) +" for hash:" + hash)

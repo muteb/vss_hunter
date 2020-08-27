@@ -14,7 +14,7 @@ class vss:
             sepeartor = '+'
             print("TimeZone: " + sepeartor + str(dtUTCplus))
         else:
-            dtUTCminus = (dtmDate.split("-")[1]) / 60
+            dtUTCminus = int(dtmDate.split("-")[1]) / 60
             sepeartor = '-'
             print("TimeZone: " + sepeartor + str(dtUTCminus))
         dtdateTime = dtmDate.split(sepeartor)[0]
