@@ -25,11 +25,14 @@ class search:
             # Create the hash object, can use something other than `.sha256()` if you wish
             file_hash = method
             # Open the file to read it's bytes
-            with open(file_name, 'rb') as f: 
+            #blocksize=128
+            with open(file_name, 'rb') as f:
                 # Read from the file. Take in the amount declared above
                 fb = f.read()
+                
                 # While there is still data being read from the file
                 file_hash.update(fb)
+           # print(file_hash.hexdigest())
             return file_hash.hexdigest()
         except:
             pass
@@ -40,14 +43,19 @@ class search:
         #itrate through the size and update the method
         for arr in length_hashes:
             if arr['size'] == len(hash):
-                print(str(arr['size']) +" for hash:" + hash)
+                # print(str(arr['size']) +" for hash:" + hash)
                 file_hash = arr['method']
         #itrate through all files and call hash_file function to return the hash. if match occur then break and print file name
         for root, dir, files in os.walk(search_path):
             for filename in files:
                 file_with_path = os.path.join(root, filename)
                 rtn_hash = self.hash_file(file_with_path,file_hash)
-                if hash == rtn_hash:
+                if filename == "vss.exe":
+                    print(file_with_path +":"+ str(rtn_hash)+":"+hash)
+
+                
+                if str(rtn_hash) == str(hash):
+                    print(rtn_hash)
                     return file_with_path
                     break
 

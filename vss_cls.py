@@ -9,18 +9,19 @@ class vss:
 
     def WMIDateStringToDate(self,dtmDate):
         sepeartor = ''
+        tmzone= ""
         if "+" in dtmDate:
             dtUTCplus = int(dtmDate.split("+")[1]) / 60
             sepeartor = '+'
-            print("TimeZone: " + sepeartor + str(dtUTCplus))
+            tmzone = sepeartor + str(dtUTCplus)
         else:
             dtUTCminus = int(dtmDate.split("-")[1]) / 60
             sepeartor = '-'
-            print("TimeZone: " + sepeartor + str(dtUTCminus))
+            tmzone=  sepeartor + str(dtUTCminus)
         dtdateTime = dtmDate.split(sepeartor)[0]
         dtmDate = dtmDate + '0'
         strDateTime =datetime.strptime(dtdateTime, '%Y%m%d%H%M%S.%f')
-        return strDateTime.isoformat()
+        return {"DateTime":strDateTime.isoformat(),"TimeZone":tmzone}
 
     def get_devicesIDs(self):
         devcID = []
@@ -28,10 +29,11 @@ class vss:
             dict2={}
             if objItem.InstallDate != None:
                 Datec= self.WMIDateStringToDate(objItem.InstallDate)
-                dict2['date'] = Datec
+                dict2['Date'] = Datec
             if objItem.DeviceObject != None:
                 DeviceObject = str(objItem.DeviceObject)
                 dict2['ID'] = DeviceObject
             devcID.append(dict2)
-        print (devcID)
+        if not devcID:
+            print("No Volume Shadow Copies")
         return devcID
